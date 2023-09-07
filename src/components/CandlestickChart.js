@@ -10,12 +10,13 @@ import {
 import { chartConfig } from "../constants/config";
 import ChartFilter from "./ChartFilter";
 import { getProductCandles } from "../api/stock-api";
-import StockContext from "../context/StockContext";
+import QuoteCurrencyContext from "../context/QuoteCurrencyContext";
+import { useParams } from "react-router-dom";
 
-const CandlestickChart = () => {
+const CandlestickChart = ({ product_id }) => {
   const [data, setData] = useState(mockProductCandle);
+  // const [data, setData] = useState([]);
   const [filter, setFilter] = useState("1H");
-
   // time low high open close volume
 
   // const formatData = () => {
@@ -48,7 +49,7 @@ const CandlestickChart = () => {
   //       const { startTimestamp, endTimestamp } = getDateRange();
   //       const granularity = chartConfig[filter].granularity;
   //       const result = await getProductCandles(
-  //         stockSymbol,
+  //         product_id,
   //         granularity,
   //         startTimestamp,
   //         endTimestamp
@@ -60,7 +61,7 @@ const CandlestickChart = () => {
   //     }
   //   };
   //   updateChartData();
-  // }, [stockSymbol, filter]);
+  // }, [product_id, filter]);
 
   const options = {
     chart: {

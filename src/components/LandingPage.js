@@ -1,26 +1,13 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { fetchAllPairs } from "../api/stock-api";
-
-function Navigation() {
-  return (
-    <nav>
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/historical-prices">Historical Prices</Link>
-        </li>
-      </ul>
-    </nav>
-  );
-}
+import QuoteCurrencyContext from "../context/QuoteCurrencyContext";
 
 function LandingPage() {
   const [data, setData] = useState([]);
   // const [selectedCurrency, setSelectedCurrency] = useState("USD");
   // const [loading, setLoading] = useState(true);
+  const [quoteCurrency, setQuoteCurrency] = useState("usd");
 
   const [tradingPairs, setTradingPairs] = useState([]);
 
@@ -36,25 +23,6 @@ function LandingPage() {
     };
     getProducts();
   }, []);
-
-  // Pagination
-  // const [currentPage, setCurrentPage] = useState(1);
-  // const [recordsPerPage] = useState(25);
-
-  // const indexOfLastRecord = currentPage * recordsPerPage;
-  // const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
-
-  // const nPages = Math.ceil(data.length / recordsPerPage);
-
-  // // Records to be displayed on the current page
-  // const currentRecords = data.slice(indexOfFirstRecord, indexOfLastRecord);
-
-  // const cryptocurrencies = [
-  //   { name: "Bitcoin", symbol: "BTC", price: 45000.0 },
-  //   { name: "Ethereum", symbol: "ETH", price: 3200.0 },
-  //   { name: "Ripple", symbol: "XRP", price: 1.2 },
-  //   // Add more cryptocurrencies as needed
-  // ];
 
   return (
     <div className="bg-gray-100 min-h-screen p-8">

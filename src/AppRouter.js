@@ -8,7 +8,7 @@ function AppRouter() {
     <Router>
       <Routes>
         <Route path="/" element={<LandingPage />} />
-        <Route path="/prices/:crypto" element={<HistoricalPricesPage />} />
+        <Route path="/prices/:product_id" element={<HistoricalPricesPage />} />
       </Routes>
     </Router>
   );

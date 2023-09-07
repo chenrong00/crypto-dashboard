@@ -241,6 +241,8 @@ export const mockProducts = [
   },
 ];
 
+export const mockQuoteCurrency = ["USD", "GBP"];
+
 export const mockProductCandle = [
   [1693934100, 26129.24, 26373.9, 26373.9, 26129.24, 0.0015],
   [1693934040, 26129.24, 26373.9, 26356.89, 26373.9, 0.0018],

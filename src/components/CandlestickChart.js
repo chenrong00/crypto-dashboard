@@ -36,7 +36,7 @@ const CandlestickChart = ({ product_id }) => {
       try {
         const { startTimestamp, endTimestamp } = getDateRange();
         const granularity = chartConfig[filter].granularity;
-        const url = `http://127.0.0.1:5000/trade_pairs/candles?product_id=${product_id}&granularity=${granularity}&start=${startTimestamp}&end=${endTimestamp}`;
+        const url = `/trade_pairs/candles?product_id=${product_id}&granularity=${granularity}&start=${startTimestamp}&end=${endTimestamp}`;
         const response = await fetch(url);
         if (!response.ok) {
           throw new Error(`HTTP error! Status: ${response.status}`);

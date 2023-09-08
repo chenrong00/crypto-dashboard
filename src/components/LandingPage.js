@@ -14,7 +14,7 @@ function LandingPage() {
   useEffect(() => {
     const getProducts = async () => {
       try {
-        const response = await fetch("http://127.0.0.1:5000/trade_pairs");
+        const response = await fetch("/trade_pairs");
         if (!response.ok) {
           throw new Error(`HTTP error. Status: ${response.status}`);
         }

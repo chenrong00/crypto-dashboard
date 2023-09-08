@@ -1,5 +1,4 @@
 import React from "react";
-import { fetchTradingPairs } from "../api/stock-api";
 
 const ChartFilter = ({ text, active, onClick }) => {
   return (

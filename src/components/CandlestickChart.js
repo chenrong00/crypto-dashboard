@@ -1,5 +1,4 @@
-import { React, useState, useEffect, useContext } from "react";
-import { mockProductCandle } from "../constants/mock";
+import { React, useState, useEffect } from "react";
 import Card from "./Card";
 import ReactApexChart from "react-apexcharts";
 import {
@@ -9,68 +8,53 @@ import {
 } from "../helpers/date-helpers";
 import { chartConfig } from "../constants/config";
 import ChartFilter from "./ChartFilter";
-import { getProductCandles } from "../api/stock-api";
-import QuoteCurrencyContext from "../context/QuoteCurrencyContext";
-import { useParams } from "react-router-dom";
 
 const CandlestickChart = ({ product_id }) => {
-  const [data, setData] = useState(mockProductCandle);
-  // const [data, setData] = useState([]);
+  const [data, setData] = useState([]);
   const [filter, setFilter] = useState("1H");
-  // time low high open close volume
 
-  // const formatData = () => {
-  //   return data.c;
-  // };
+  useEffect(() => {
+    const getDateRange = () => {
+      const { hours, days, weeks, months, years } = chartConfig[filter];
 
-  // const { stockSymbol } = useContext(StockContext);
+      const endDate = new Date();
+      const startDate = createDate(
+        endDate,
+        -hours,
+        -days,
+        -weeks,
+        -months,
+        -years
+      );
 
-  // useEffect(() => {
-  //   const getDateRange = () => {
-  //     const { hours, days, weeks, months, years } = chartConfig[filter];
+      const startTimestamp = convertDateToUnixTimestamp(startDate);
+      const endTimestamp = convertDateToUnixTimestamp(endDate);
+      return { startTimestamp, endTimestamp };
+    };
 
-  //     const endDate = new Date();
-  //     const startDate = createDate(
-  //       endDate,
-  //       -hours,
-  //       -days,
-  //       -weeks,
-  //       -months,
-  //       -years
-  //     );
-
-  //     const startTimestamp = convertDateToUnixTimestamp(startDate);
-  //     const endTimestamp = convertDateToUnixTimestamp(endDate);
-  //     return { startTimestamp, endTimestamp };
-  //   };
-
-  //   const updateChartData = async () => {
-  //     try {
-  //       const { startTimestamp, endTimestamp } = getDateRange();
-  //       const granularity = chartConfig[filter].granularity;
-  //       const result = await getProductCandles(
-  //         product_id,
-  //         granularity,
-  //         startTimestamp,
-  //         endTimestamp
-  //       );
-  //       setData(result);
-  //     } catch (error) {
-  //       setData([]);
-  //       console.log(error);
-  //     }
-  //   };
-  //   updateChartData();
-  // }, [product_id, filter]);
+    const updateChartData = async () => {
+      try {
+        const { startTimestamp, endTimestamp } = getDateRange();
+        const granularity = chartConfig[filter].granularity;
+        const url = `http://127.0.0.1:5000/trade_pairs/candles?product_id=${product_id}&granularity=${granularity}&start=${startTimestamp}&end=${endTimestamp}`;
+        const response = await fetch(url);
+        if (!response.ok) {
+          throw new Error(`HTTP error! Status: ${response.status}`);
+        }
+        const data = await response.json();
+        setData(data);
+      } catch (error) {
+        setData([]);
+        console.log(error);
+      }
+    };
+    updateChartData();
+  }, [product_id, filter]);
 
   const options = {
     chart: {
       type: "candlestick",
       // height: 350,
-    },
-    title: {
-      // text: "CandleStick Chart",
-      align: "left",
     },
     xaxis: {
       type: "datetime",

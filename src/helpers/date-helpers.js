@@ -5,7 +5,6 @@ export const convertDateToUnixTimestamp = (date) => {
 export const convertUnixTimestampToDate = (unixTimestamp) => {
   const milliseconds = unixTimestamp * 1000;
   return new Date(milliseconds);
-  //   .toLocaleDateString();
 };
 
 export const createDate = (date, hours, days, weeks, months, years) => {

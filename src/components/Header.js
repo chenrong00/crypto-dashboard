@@ -5,9 +5,7 @@ const Header = ({ name }) => {
     <>
       <div className="xl:px-32">
         <h1 className="text-5xl">{name}</h1>
-        {/* <Dropdown /> */}
       </div>
-      {/* <ThemeIcon /> */}
     </>
   );
 };

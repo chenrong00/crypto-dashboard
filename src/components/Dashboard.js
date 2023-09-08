@@ -45,7 +45,7 @@ const Dashboard = ({ product_id }) => {
               ((productStats.last - productStats.open) / productStats.open) *
               100
             ).toFixed(2)}
-            currency={quoteCurrency} // Extract quote currency from product_id
+            currency={quoteCurrency}
           />
         )}
       </div>

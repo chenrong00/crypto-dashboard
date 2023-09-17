@@ -1,6 +1,6 @@
 # Stock Dashboard
 
-### Front-end
+## Front-end
 In root folder: run command \
 `npm install`\
 `npm start`
@@ -8,20 +8,18 @@ In root folder: run command \
 Runs the app in the development mode.\
 Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
-### Back-end: 
+## Back-end
 
 1. `cd backend` 
 
-2. Ensure these packages are installed:
-- flask
-- flask_cors
-- requests
-- time
-- base64
-- json
-- decouple
+2. Create a virtual environment: `python3 -m venv env`
+3. Activate the environment: `source env/bin/activate`
+4. Install required packages:
+- `python3 -m pip install flask`
+- `python3 -m pip install flask_cors`
+- `python3 -m pip install requests`
 
-3. `python -m flask --app server run`
+5. Run the backend: `python -m flask --app server run`
 
 Should be hosted on [http://127.0.0.1:5000](http://127.0.0.1:5000). \
 If this is not the case, change the `proxy` header in `package.json` in root directory to the address where the backend is hosted. 

@@ -3,17 +3,14 @@ from flask_cors import CORS
 import requests
 import time
 import base64
-import hmac
-import hashlib
 import json
-from decouple import config
 
 app = Flask(__name__)
 CORS(app)
 
-api_key = config('API_KEY')
-api_secret = config('API_SECRET')
-api_passphrase = config('API_PASSPHRASE')
+# api_key = config('API_KEY')
+# api_secret = config('API_SECRET')
+# api_passphrase = config('API_PASSPHRASE')
 
 base_path = 'https://api.exchange.coinbase.com'
 
